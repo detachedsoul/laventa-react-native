@@ -9,3 +9,7 @@ Coming from a TailwindCSS background, I am using a package known as NativeWind. 
 ## Icons
 
 I am using a package known as Lucide. It is a collection of icons that are free to use. You can find the documentation [https://lucide.dev/](https://lucide.dev/)
+
+## Navigation
+
+I am using a package known as React Navigation. It is a package that allows you to navigate between screens. You can find the documentation [https://reactnavigation.org/](https://reactnavigation.org/)

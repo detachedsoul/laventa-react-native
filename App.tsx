@@ -1,3 +1,4 @@
+import IndexNewArrivals from "@components/IndexNewArrivals";
 import { ArrowDown, MenuIcon, SearchIcon, ShoppingCart, Sun } from "lucide-react-native";
 import React from "react";
 import {
@@ -23,7 +24,7 @@ const App = () => {
                 </View>
             </View>
 
-            <ScrollView className="bg-black text-slate-200">
+            <ScrollView className="bg-[#181818] text-slate-200">
                 <View className="bg-slate-800 px-4 pt-4 pb-20" style={{rowGap: 40}}>
                     <View  style={{rowGap: 15}}>
                         <Text className="text-2xl text-white tracking-widest leading-10">
@@ -46,12 +47,12 @@ const App = () => {
                     <Image className={`w-full aspect-auto h-[415]`} source={require("./assets/img/hero-image.png")} alt="Laventa - Ecommerce marketplace" resizeMethod="resize" resizeMode="cover" />
                 </View>
 
-                <View className="p-6 relative">
-                    <View className="p-6 rounded-xl bg-white absolute -top-10 w-full left-6">
-                        <Text>
-                            Just a test component. Yay!!!!
-                        </Text>
-                    </View>
+                <IndexNewArrivals />
+
+                <View className="px-6 pb-10">
+                    <Text className="text-slate-200 bg-purple-900 p-4">
+                        This would serve as a text component!!!!!
+                    </Text>
                 </View>
             </ScrollView>
         </>
