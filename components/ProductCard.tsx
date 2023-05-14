@@ -1,4 +1,5 @@
-import { EyeIcon, ShoppingCartIcon, StarIcon } from "lucide-react-native";
+import { EyeIcon, HeartIcon, ShoppingCartIcon, StarIcon } from "lucide-react-native";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Image, Pressable, Text, View, useWindowDimensions } from "react-native";
 
 export interface Category {
@@ -102,37 +103,63 @@ export interface Pagination {
     total:     number;
 }
 
-type Product = [
+export type Product = {
     id: number,
     attributes: {
-        productName:       string;
-        inStock:           boolean;
-        isDiscount:        boolean;
-        oldPrice:          number | null;
-        currentPrice:      number;
-        quantity:          number;
-        slug:              string;
-        highlights:        string;
-        details:           string;
-        createdAt:         string;
-        updatedAt:         string;
-        publishedAt:       string;
-        indexImage:        IndexImage;
-        productImageOne:   IndexImage;
-        productImageTwo:   IndexImage;
+        productName: string;
+        inStock: boolean;
+        isDiscount: boolean;
+        oldPrice: number | null;
+        currentPrice: number;
+        quantity: number;
+        slug: string;
+        highlights: string;
+        details: string;
+        createdAt: string;
+        updatedAt: string;
+        publishedAt: string;
+        indexImage: IndexImage;
+        productImageOne: IndexImage;
+        productImageTwo: IndexImage;
         productImageThree: IndexImage;
-        category:          Category;
-    }
-];
+        category: Category;
+    };
+};
 
-const ProductCard = ({ product }: {product: Product}) => {
+const ProductCard = ({ product }: { product: Product; }): JSX.Element => {
+
     const { width } = useWindowDimensions();
 
-    const productCardWidth = width - 96;
+    const productCardWidth: number = width - 106;
+
+    type state = {
+        initialValue: boolean,
+        setValue: () => Dispatch<SetStateAction<boolean>>
+    }
+
+    const [isHovered, setIsHovered] = useState(false);
 
     return (
         <View style={{rowGap: 20, width: productCardWidth}}>
-            <Image className="w-full h-[300] rounded-xl object-center object-cover" source={{uri: `${product.attributes.indexImage.data.attributes.url}`}} resizeMethod="resize" resizeMode="cover"  />
+            <Pressable className="relative h-[300] rounded-xl group" onTouchStart={() => setIsHovered(!isHovered)}>
+                <Image className="w-full h-full rounded-xl object-center object-cover" source={{uri: `${product.attributes.indexImage.data.attributes.url}`}} resizeMethod="resize" resizeMode="cover" alt={product.attributes.productName} />
+
+                <View className={`bg-black/50 h-full absolute rounded-xl w-full ease-in-out transition-transform ${isHovered ? 'scale-100' : 'scale-0'} group-focus-within:scale-100`}>
+                    <View className="p-4 rounded-lg bg-white absolute top-4 right-4">
+                        <HeartIcon className="text-rose-500" size={30} />
+                    </View>
+
+                    <View className="items-center justify-center top-1/3 flex-row">
+                        <Pressable className="p-4 rounded-lg bg-white mr-2">
+                            <EyeIcon className="text-black" size={30} />
+                        </Pressable>
+
+                        <Pressable className="p-4 rounded-lg bg-white ml-2">
+                            <ShoppingCartIcon className="text-black" size={30} />
+                        </Pressable>
+                    </View>
+                </View>
+            </Pressable>
 
             <View className="px-4" style={{rowGap: 20}}>
                 <View style={{rowGap: 5}}>

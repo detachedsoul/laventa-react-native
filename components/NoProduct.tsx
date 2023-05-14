@@ -1,6 +1,6 @@
 import { Text, View } from "react-native";
 
-const NoProduct = () => {
+const NoProduct = (): JSX.Element => {
     return (
         <View>
             <Text className="text-lg text-rose-600 font-bold">

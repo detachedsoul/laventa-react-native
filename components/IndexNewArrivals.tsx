@@ -1,7 +1,7 @@
 import IndexNewArrivalsProducts from "@components/IndexNewArrivalsProducts";
 import { Text, View } from "react-native";
 
-const IndexNewArrivals = () => {
+const IndexNewArrivals = (): JSX.Element => {
     return (
         <View className="p-6">
             <View className="p-6 rounded-xl bg-white relative -top-16 -mb-10 w-full" style={{rowGap: 30}}>
